@@ -1,3 +1,5 @@
-<footer class="footer">
-  © <?= date('Y') ?> jac
-</footer>
+  <footer>
+    <small>© 2025 · jac · MedBillCalc</small>
+  </footer>
+</body>
+</html>
