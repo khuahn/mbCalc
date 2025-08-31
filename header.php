@@ -6,7 +6,7 @@
   <title>MedBillCalc</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="<?= isset($bodyClass) ? $bodyClass : '' ?>">
   <header class="bar">
     <strong>jac · MedBillCalc</strong>
     <?php if (!empty($_SESSION['user'])): ?>
