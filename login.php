@@ -19,21 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $csrf_token = generate_csrf();
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MedBillCalc Login</title>
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body class="login-page">
- <?php
 $bodyClass = 'login-page';
 include 'header.php';
 ?>
 
-  <main class="login-container">
-    <h2>🔒 MedBill
+<main class="login-container">
+  <h2>🔒 MedBillCalc Access</h2>
+  <?php if (!empty($error)): ?>
+    <div class="error"><?= htmlspecialchars($error) ?></div>
+  <?php endif; ?>
+  <form method="POST" action="login.php">
+    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>" />
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+</main>
+
+<?php include 'footer.php'; ?>
