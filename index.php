@@ -1,14 +1,19 @@
 <?php
 session_start();
-if (empty($_SESSION['user'])) {
-  header('Location: login.php');
-  exit;
-}
-$bodyClass = 'home-page';
+$bodyClass = 'calculator-page';
 include 'header.php';
 ?>
-<main class="page">
-  <h2>Welcome, <?= htmlspecialchars($_SESSION['user']) ?>.</h2>
-  <p>MedBillCalc is ready.</p>
-</main>
-<?php include 'footer.php'; ?>
+
+<div class="container">
+  <h1>MedBillCalc</h1>
+  <form id="calcForm">
+    <label for="charge">Charge Amount:</label>
+    <input type="number" id="charge" name="charge" required>
+
+    <label for="allowed">Allowed Amount:</label>
+    <input type="number" id="allowed" name="allowed" required>
+
+    <label for="copay">Copay:</label>
+    <input type="number" id="copay" name="copay" required>
+
+    <label for="deductible">Deductible:</label>
