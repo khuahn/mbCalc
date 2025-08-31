@@ -3,37 +3,35 @@ session_start();
 require_once 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!verify_csrf($_POST['csrf_token'])) {
-        $error = "Invalid CSRF token.";
+  if (!verify_csrf($_POST['csrf_token'] ?? '')) {
+    $error = 'Invalid CSRF token.';
+  } else {
+    $user = trim($_POST['username'] ?? '');
+    $pass = trim($_POST['password'] ?? '');
+    if ($user !== '' && $pass !== '' && auth_user($user, $pass)) {
+      $_SESSION['user'] = $user;
+      header('Location: index.php');
+      exit;
     } else {
-        $user = trim($_POST['username']);
-        $pass = trim($_POST['password']);
-        if (auth_user($user, $pass)) {
-            $_SESSION['user'] = $user;
-            header('Location: index.php');
-            exit;
-        } else {
-            $error = "Invalid credentials.";
-        }
+      $error = 'Invalid credentials.';
     }
+  }
 }
 
 $csrf_token = generate_csrf();
 $bodyClass = 'login-page';
 include 'header.php';
 ?>
-
 <main class="login-container">
-  <h2>🔒 MedBillCalc Access</h2>
+  <h2>MedBillCalc Login</h2>
   <?php if (!empty($error)): ?>
     <div class="error"><?= htmlspecialchars($error) ?></div>
   <?php endif; ?>
   <form method="POST" action="login.php">
-    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>" />
-    <input type="text" name="username" placeholder="Username" required />
-    <input type="password" name="password" placeholder="Password" required />
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
     <button type="submit">Login</button>
   </form>
 </main>
-
 <?php include 'footer.php'; ?>
