@@ -29,18 +29,8 @@ $csrf_token = generate_csrf();
   <title>MedBillCalc Login</title>
   <link rel="stylesheet" href="login.css" />
 </head>
-<body>
-  <div class="login-container">
-    <h2>🔒 MedBillCalc Access</h2>
-    <?php if (!empty($error)): ?>
-      <div class="error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
-    <form method="POST" action="login.php">
-      <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>" />
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-  </div>
-</body>
-</html>
+<body class="login-page">
+  <?php include 'header.php'; ?>
+
+  <main class="login-container">
+    <h2>🔒 MedBill
