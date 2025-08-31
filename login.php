@@ -1,24 +1,23 @@
 <?php
 session_start();
-require_once 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if (!verify_csrf($_POST['csrf_token'] ?? '')) {
-    $error = 'Invalid CSRF token.';
-  } else {
-    $user = trim($_POST['username'] ?? '');
-    $pass = trim($_POST['password'] ?? '');
-    if ($user !== '' && $pass !== '' && auth_user($user, $pass)) {
-      $_SESSION['user'] = $user;
-      header('Location: index.php');
-      exit;
-    } else {
-      $error = 'Invalid credentials.';
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    $lines = file('users.txtdb', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        list($storedUser, $storedPass) = explode('|', $line);
+        if ($username === $storedUser && $password === $storedPass) {
+            $_SESSION['username'] = $username;
+            header('Location: index.php');
+            exit;
+        }
     }
-  }
+
+    $error = 'Invalid login';
 }
 
-$csrf_token = generate_csrf();
 $bodyClass = 'login-page';
 include 'header.php';
 ?>
