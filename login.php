@@ -22,6 +22,7 @@ $csrf_token = generate_csrf();
 $bodyClass = 'login-page';
 include 'header.php';
 ?>
+
 <main class="login-container">
   <h2>MedBillCalc Login</h2>
   <?php if (!empty($error)): ?>
@@ -34,4 +35,5 @@ include 'header.php';
     <button type="submit">Login</button>
   </form>
 </main>
+
 <?php include 'footer.php'; ?>
