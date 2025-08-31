@@ -30,7 +30,10 @@ $csrf_token = generate_csrf();
   <link rel="stylesheet" href="login.css" />
 </head>
 <body class="login-page">
-  <?php include 'header.php'; ?>
+ <?php
+$bodyClass = 'login-page';
+include 'header.php';
+?>
 
   <main class="login-container">
     <h2>🔒 MedBill
