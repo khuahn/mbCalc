@@ -20,9 +20,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: Inter, system-ui, sans-serif;
-  background: var(--bg);
+  background: #f5f5f5;
   color: var(--text);
   font-size: 1rem;
+}
+
+a {
+  color: var(--accent);
 }
 
 .wrapper {
@@ -185,35 +189,27 @@ input[type="password"]:focus {
   padding: 16px;
   margin-top: 40px;
   font-size: 0.9rem;
-  color: #666;
-}
-
-@media (max-width: 768px) {
-  .layout {
-    flex-direction: column;
-  }
-  .right-panel {
-    width: 100%;
-  }
-}
-/* Summary card styling — matches calc-card */
-.summary-card {
-  background: #ffffff;
-  box-shadow: var(--shadow-teal);
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
 }
 
 /* Footer version tag — styled for internal builds */
 .footer .version-tag {
   font-size: 0.9rem;
-  color: #666;
   line-height: 1.6;
 }
 
 .footer .signature {
   font-weight: 600;
-  color: var(--accent);
   letter-spacing: 0.5px;
+}
+
+/* Styling the footer link to match the button's accent color */
+.footer .signature a,
+.footer .signature a:visited {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer .signature a:hover {
+    color: var(--border);
 }
