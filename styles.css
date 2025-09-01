@@ -1,66 +1,139 @@
+/* styles.css — v1.6.6 Final
+    Header contrast + modular polish
+    Refined by 鍛匠Jac — August 2025 */
+
 :root {
-  --bg: #f4f4f4;
-  --fg: #222;
-  --accent: #0078d4;
-  --border: #ccc;
-  --highlight: #e0f0ff;
+  --bg: #ffffff;
+  --text: #004d40;
+  --accent: #004d40;
+  --border: #004d40;
+  --highlight: #b2dfdb;
+  --header-bg: #004d40;
+  --shadow-teal: 0 4px 12px rgba(0, 77, 64, 0.15); /* deep teal shadow */
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   background: var(--bg);
-  color: var(--fg);
+  color: var(--text);
+  font-size: 1rem;
 }
 
-.container {
-  max-width: 960px;
+.wrapper {
+  max-width: 1080px;
   margin: 40px auto;
-  padding: 0 16px;
+  padding: 24px;
+  background: var(--bg);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
-h1 {
-  text-align: center;
+.title-wrapper {
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
+}
+
+.title {
   font-size: 1.8rem;
+  color: var(--accent);
+  margin: 0;
 }
 
-table {
+.layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.left-panel,
+.right-panel {
+  flex: 1;
+  padding: 0;
+}
+
+/* Calculator table: white background, teal shadow, no visible lines */
+.calc-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-bottom: 24px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: #ffffff;
+  font-size: 1rem;
+  box-shadow: var(--shadow-teal);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-th, td {
-  border: 1px solid var(--border);
+.calc-table th,
+.calc-table td {
   padding: 12px;
   text-align: center;
+  border: none;
 }
 
-th {
-  background: var(--highlight);
+.calc-table th {
+  background: var(--header-bg);
+  color: #ffffff; /* ← white text */
   font-weight: 600;
 }
 
-input[type="number"] {
+.calc-table tbody tr {
+  background-color: #ffffff;
+}
+
+.calc-table tbody tr:hover td {
+  background-color: #f6fbfb;
+}
+
+/* Updated styles to include all input types for consistency */
+input[type="number"],
+input[type="text"],
+input[type="password"] {
   width: 100%;
-  padding: 8px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: #ffffff;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Specific text alignment for number inputs */
+input[type="number"] {
   text-align: right;
 }
 
-.buttons {
+/* Specific text alignment for text and password inputs */
+input[type="text"],
+input[type="password"] {
+  text-align: left;
+}
+
+/* Focus style for all input types */
+input[type="number"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--header-bg);
+  box-shadow: 0 0 0 2px rgba(0, 151, 167, 0.12);
+}
+
+.button-group {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin: 20px 0 24px;
 }
 
-button {
+.button {
   padding: 10px 16px;
   font-size: 1rem;
   background: var(--accent);
@@ -71,19 +144,76 @@ button {
   transition: background 0.2s ease;
 }
 
-button:hover {
-  background: #005fa3;
+.button:hover {
+  background: var(--border);
 }
 
-#totals {
-  text-align: center;
-  font-size: 1.1rem;
-  color: var(--fg);
+.summary-box {
+  background: var(--bg);
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-footer {
+.summary-box h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  }
+.summary-box h2 span {
+  font-weight: 600;
+  color: var(--text);
+  float: right;
+}
+
+.summary-box p {
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary-box span {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.footer {
   text-align: center;
   padding: 16px;
+  margin-top: 40px;
   font-size: 0.9rem;
   color: #666;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  .right-panel {
+    width: 100%;
+  }
+}
+/* Summary card styling — matches calc-card */
+.summary-card {
+  background: #ffffff;
+  box-shadow: var(--shadow-teal);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+/* Footer version tag — styled for internal builds */
+.footer .version-tag {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.footer .signature {
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.5px;
 }
