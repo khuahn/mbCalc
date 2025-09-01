@@ -22,7 +22,6 @@ require 'db.php';
         </div>
         
         <nav class="nav-links">
-            <a href="index.php">Home</a>
             <?php if (isset($_SESSION['username'])): ?>
                 <?php if ($_SESSION['username'] === 'jac'): ?>
                     <a href="admin.php">Admin</a>
