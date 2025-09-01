@@ -18,7 +18,6 @@ require 'db.php';
     <header class="bar">
         <div style="display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.5rem; font-weight: bold; color: white;">
             <i class="fas fa-calculator"></i>
-            <i class="fas fa-file-invoice"></i>
             Med Bill Calc
         </div>
         
