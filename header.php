@@ -24,9 +24,9 @@ require 'db.php';
         <nav class="nav-links">
             <?php if (isset($_SESSION['username'])): ?>
                 <?php if ($_SESSION['username'] === 'jac'): ?>
-                    <a href="admin.php">Admin</a>
+                    <a href="admin.php"><i class="fas fa-user-shield"></i> Admin</a>
                 <?php endif; ?>
-                <a href="logout.php" class="button">Logout</a>
+                <a href="logout.php" class="button"><i class="fas fa-right-from-bracket"></i> Logout</a>
             <?php endif; ?>
         </nav>
     </header>
