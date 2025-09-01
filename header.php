@@ -11,6 +11,8 @@ require 'db.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MedBillCalc</title>
 
+    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=vMkgItIdhG6L&format=png&color=000000">
+    
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
